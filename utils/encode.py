@@ -3,10 +3,9 @@ from sentence_transformers import SentenceTransformer
 import torch
 import numpy as np
 
-
-model = SentenceTransformer('BAAI/bge-large-en-v1.5')
-data = load_dataset('hugginglearners/netflix-shows')
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
+model = SentenceTransformer('BAAI/bge-large-en-v1.5', device=device)
+data = load_dataset('hugginglearners/netflix-shows')
 
 # format data
 data = data['train']
@@ -32,6 +31,7 @@ def format_show(row):
 
 def encode(data):
     texts = [format_show(row) for row in data]
+    print(texts)
     instruction = "Represent this movie for semantic search:"
     embeddings = model.encode(
         texts,

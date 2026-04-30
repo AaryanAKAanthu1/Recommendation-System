@@ -19,9 +19,12 @@ class Recommender:
     def recommend(self, movies_watched):
         watched_embeddings = encode.encode(movies_watched)
         watched_embeddings = self.mean_weight(watched_embeddings)
-        recommendations = similarity.scan(watched_embeddings)
-        recommendations = [decode.decode(recommendations[i][0]) for i in range(0, len(recommendations))]
+        raw_recommendations = similarity.scan(watched_embeddings)
+        recommendations = [decode.decode(raw_recommendations[i][0]) for i in range(0, len(raw_recommendations))]
 
+        if not raw_recommendations:
+            return []
+        
         return recommendations
 
         

@@ -1,6 +1,11 @@
-import numpy as np
+import pandas as pd
 
-data = np.load('./data/netflix_shows.csv')
+data = pd.read_csv("./data/netflix_shows.csv")
 
 def decode(idx):
-    return data['train'][idx]
+    return data.iloc[idx]
+
+if __name__ == '__main__':
+    print(data)
+    idx = int(input("index: "))
+    print(decode(idx))

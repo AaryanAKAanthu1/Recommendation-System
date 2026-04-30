@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendation System</title>
+</head>
+<body>
+    <h1 align="center">Recommendation System</h1>
+    <form action="http://localhost:5000/recommend" method="post">
+        <table>
+            <th>Name</th><th>Value</th>
+            <tr><td><label>Title </label></td><td><input type="text" name="title" id=""></td></tr>
+            <tr><td><label>Type </label></td><td><select name="type" id=""><option value="show">Show</option><option value="Movie">Movie</option></select></td></tr>
+            <tr><td><label>Genre </label></td><td><input type="text" name="genre" id=""></td></tr>
+            <tr><td><label>Release Year </label></td><td><input type="number" name="release_year" id=""></td></tr>
+            <tr><td><label>Description </label></td><td><input type="text" name="description" id=""></td></tr>
+            <tr><td><label>Director </label></td><td><input type="text" name="director" id=""></td></tr>
+            <tr><td><label>Cast </label></td><td><input type="text" name="cast" id=""></td></tr>
+            <tr><td><label>Rating </label></td><td><input type="text" name="rating" id=""></td></tr>
+            <tr><td><label>Duration </label></td><td><input type="text" name="duration" id=""></td></tr>
+        </table>
+        <button type="submit">Recommend</button> <button type="reset">Reset</button>
+
+    </form>
+    <h1>Recommendations</h1>
+    <table>
+        <tr><th>Index</th><th>Title</th></tr>
+        {% for movie in recommendations %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ movie }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</body>
+</html>
